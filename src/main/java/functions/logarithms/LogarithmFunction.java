@@ -4,6 +4,9 @@ public class LogarithmFunction {
     Ln ln;
     LogX logX;
 
+    public LogarithmFunction() {
+    }
+
     public LogarithmFunction(Ln ln, LogX logX) {
         this.ln = ln;
         this.logX = logX;

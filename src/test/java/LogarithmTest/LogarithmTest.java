@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.FileNotFoundException;
 
+@DisplayName("Logarithm test")
 public class LogarithmTest {
     private final double accuracy = 1 / 1e5;
     private final Ln ln = new Ln();
@@ -18,14 +19,27 @@ public class LogarithmTest {
 
     @ParameterizedTest
     @DisplayName("Тестирование натурального логарифма")
-    @CsvFileSource(resources = "/input/lnInput.csv")
+    @CsvFileSource(resources = "/LogarithmInput/lnInput.csv")
     void lnTest(double number, double trueAnswer) throws FileNotFoundException {
         try {
             Double answer = ln.calculate(number, accuracy);
-            printer.csvPrint(number, answer, "src/test/resources/output/lnOutput.csv");
+            printer.csvPrint(number, answer, "src/test/resources/LogarithmOutput/lnOutput.csv");
             Assertions.assertEquals(trueAnswer, answer, 0.1);
         } catch (ArithmeticException e) {
-            Assertions.assertEquals("X должен быть больше 0!", e.getMessage());
+            Assertions.assertEquals("Number должен быть больше 0!", e.getMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("Тестирование логарифма по основанию X")
+    @CsvFileSource(resources = "/LogarithmInput/LogInput.csv")
+    void logTest(double number, double base, double trueAnswer) throws FileNotFoundException {
+        try {
+            Double answer = logX.calculate(number, base, accuracy);
+            printer.csvPrint(number, answer, "src/test/resources/LogarithmOutput/logOutput.csv");
+            Assertions.assertEquals(trueAnswer, answer, 0.1);
+        } catch (ArithmeticException e) {
+            Assertions.assertEquals("Number должен быть больше 0!", e.getMessage());
         }
     }
 }

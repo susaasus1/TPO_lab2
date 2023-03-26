@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 
 public class Sin {
-    public static BigDecimal sin(double x, double precision) {
+    public BigDecimal sin(double x, double precision) {
         BigDecimal decimalX = new BigDecimal(x);
         BigDecimal term = decimalX;
         BigDecimal sum = decimalX;
@@ -20,7 +20,7 @@ public class Sin {
         return sum;
     }
 
-    public static BigInteger factorial(int n) {
+    public BigInteger factorial(int n) {
         BigInteger result = BigInteger.ONE;
         for (int i = 2; i <= n; i++) {
             result = result.multiply(BigInteger.valueOf(i));

@@ -11,6 +11,8 @@ public class Sec {
     }
 
     public BigDecimal sec(double x, double precision) {
-        return BigDecimal.ONE.divide(cos.cos(x, precision), 20, RoundingMode.HALF_UP);
+        if ((x - Math.PI / 2) % Math.PI != 0)
+            return BigDecimal.ONE.divide(cos.cos(x, precision), 20, RoundingMode.HALF_UP);
+        else return new BigDecimal(Double.NaN);
     }
 }

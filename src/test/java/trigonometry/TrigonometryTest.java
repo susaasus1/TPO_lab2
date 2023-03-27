@@ -35,50 +35,50 @@ public class TrigonometryTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/TrigonometryInput/sin.csv")
-    void sinTest(Double x, BigDecimal expected) throws FileNotFoundException {
+    void sinTest(double x, double expected) throws FileNotFoundException {
         BigDecimal result = sin.sin(x, precision);
         csvPrinter.csvPrint(x, result.doubleValue(), "src/test/resources/TrigonometryOutput/sin.csv");
-        assertEquals(expected.floatValue(), result.floatValue(), precision);
+        assertEquals(expected, result.doubleValue(), precision);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/TrigonometryInput/cos.csv")
-    void cosTest(Double x, BigDecimal expected) throws FileNotFoundException {
+    void cosTest(double x, double expected) throws FileNotFoundException {
         BigDecimal result = cos.cos(x, precision);
         csvPrinter.csvPrint(x, result.doubleValue(), "src/test/resources/TrigonometryOutput/cos.csv");
-        assertEquals(expected.floatValue(), result.floatValue(), precision);
+        assertEquals(expected, result.doubleValue(), precision);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/TrigonometryInput/sec.csv")
-    void secTest(Double x, BigDecimal expected) throws FileNotFoundException {
+    void secTest(double x, double expected) throws FileNotFoundException {
         BigDecimal result = sec.sec(x, precision);
         csvPrinter.csvPrint(x, result.doubleValue(), "src/test/resources/TrigonometryOutput/sec.csv");
-        assertEquals(expected.floatValue(), result.floatValue(), precision);
+        assertEquals(expected, result.doubleValue(), precision);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/TrigonometryInput/csc.csv")
-    void cscTest(Double x, BigDecimal expected) throws FileNotFoundException {
+    void cscTest(double x, double expected) throws FileNotFoundException {
         BigDecimal result = csc.csc(x, precision);
         csvPrinter.csvPrint(x, result.doubleValue(), "src/test/resources/TrigonometryOutput/csc.csv");
-        assertEquals(expected.floatValue(), result.floatValue(), precision);
+        assertEquals(expected, result.doubleValue(), precision);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/TrigonometryInput/tan.csv")
-    void tanTest(Double x, BigDecimal expected) throws FileNotFoundException {
+    void tanTest(double x, double expected) throws FileNotFoundException {
         BigDecimal result = tan.tan(x, precision);
         csvPrinter.csvPrint(x, result.doubleValue(), "src/test/resources/TrigonometryOutput/tan.csv");
-        assertEquals(expected.floatValue(), result.floatValue(), precision);
+        assertEquals(expected, result.doubleValue(), precision);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/TrigonometryInput/cot.csv")
-    void cotTest(Double x, BigDecimal expected) throws FileNotFoundException {
+    void cotTest(double x, double expected) throws FileNotFoundException {
         BigDecimal result = cot.cot(x, precision);
         csvPrinter.csvPrint(x, result.doubleValue(), "src/test/resources/TrigonometryOutput/cot.csv");
-        assertEquals(expected.floatValue(), result.floatValue(), precision);
+        assertEquals(expected, result.doubleValue(), precision);
     }
 
 }

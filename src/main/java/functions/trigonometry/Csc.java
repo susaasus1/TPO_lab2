@@ -11,6 +11,8 @@ public class Csc {
     }
 
     public BigDecimal csc(double x, double precision) {
+        if (x % Math.PI == 0)
+            return new BigDecimal(Double.NaN);
         return BigDecimal.ONE.divide(sin.sin(x, precision), 20, RoundingMode.HALF_UP);
     }
 }

@@ -16,6 +16,7 @@ public class Cos {
         if ((x > Math.PI / 2) && (x < 3 * Math.PI / 2)) {
             cos = cos.multiply(BigDecimal.ONE.negate());
         }
+        if (cos.abs().doubleValue() > 1) return new BigDecimal(Double.NaN);
         return cos;
     }
 }

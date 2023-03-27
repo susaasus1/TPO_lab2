@@ -13,6 +13,8 @@ public class Tan {
     }
 
     public BigDecimal tan(double x, double precision) {
-        return sin.sin(x, precision).divide(cos.cos(x, precision), 20, RoundingMode.HALF_UP);
+        if ((x - Math.PI / 2) % Math.PI != 0)
+            return sin.sin(x, precision).divide(cos.cos(x, precision), 20, RoundingMode.HALF_UP);
+        else return new BigDecimal(Double.NaN);
     }
 }

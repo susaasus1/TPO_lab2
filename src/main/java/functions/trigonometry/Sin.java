@@ -17,6 +17,7 @@ public class Sin {
             sign = sign.negate();
             i++;
         }
+        if (sum.abs().doubleValue() > 1) return new BigDecimal(Double.NaN);
         return sum;
     }
 

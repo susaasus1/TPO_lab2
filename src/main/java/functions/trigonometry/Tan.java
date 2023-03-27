@@ -12,9 +12,9 @@ public class Tan {
         this.cos = cos;
     }
 
-    public BigDecimal tan(double x, double precision) {
+    public double tan(double x, double precision) {
         if ((x - Math.PI / 2) % Math.PI != 0)
-            return sin.sin(x, precision).divide(cos.cos(x, precision), 20, RoundingMode.HALF_UP);
-        else return new BigDecimal(Double.NaN);
+            return sin.sin(x, precision)/(cos.cos(x, precision));
+        else return Double.NaN;
     }
 }

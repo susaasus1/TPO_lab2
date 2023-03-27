@@ -17,7 +17,7 @@ public class Function {
         if (number > 0) {
             return logarithmFunction.calculate(number, accuracy);
         } else {
-            return trigonometryFunctionCalculator.calculate(number, accuracy).doubleValue();
+            return trigonometryFunctionCalculator.calculate(number, accuracy);
         }
     }
 }

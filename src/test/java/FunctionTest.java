@@ -70,39 +70,39 @@ public class FunctionTest {
         reader = new CSVReader(new FileReader(cosPath));
         data = reader.readAll();
         for (String[] i : data)
-            Mockito.when(cosMock.cos(Double.parseDouble(i[0]), accuracy)).thenReturn(BigDecimal.valueOf(Double.parseDouble(i[1])));
+            Mockito.when(cosMock.cos(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
         String sinPath = "src/test/resources/TrigonometryInput/sin.csv";
         reader = new CSVReader(new FileReader(sinPath));
         data = reader.readAll();
         for (String[] i : data)
-            Mockito.when(sinMock.sin(Double.parseDouble(i[0]), accuracy)).thenReturn(BigDecimal.valueOf(Double.parseDouble(i[1])));
+            Mockito.when(sinMock.sin(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
 
         String cotPath = "src/test/resources/TrigonometryInput/cot.csv";
         reader = new CSVReader(new FileReader(cotPath));
         data = reader.readAll();
         for (String[] i : data)
-            Mockito.when(cotMock.cot(Double.parseDouble(i[0]), accuracy)).thenReturn(BigDecimal.valueOf(Double.parseDouble(i[1])));
+            Mockito.when(cotMock.cot(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
         String cscPath = "src/test/resources/TrigonometryInput/csc.csv";
         reader = new CSVReader(new FileReader(cscPath));
         data = reader.readAll();
         for (String[] i : data)
-            Mockito.when(cscMock.csc(Double.parseDouble(i[0]), accuracy)).thenReturn(BigDecimal.valueOf(Double.parseDouble(i[1])));
+            Mockito.when(cscMock.csc(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
         String secPath = "src/test/resources/TrigonometryInput/sec.csv";
         reader = new CSVReader(new FileReader(secPath));
         data = reader.readAll();
         for (String[] i : data)
-            Mockito.when(secMock.sec(Double.parseDouble(i[0]), accuracy)).thenReturn(BigDecimal.valueOf(Double.parseDouble(i[1])));
+            Mockito.when(secMock.sec(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
 
         String tanPath = "src/test/resources/TrigonometryInput/tan.csv";
         reader = new CSVReader(new FileReader(tanPath));
         data = reader.readAll();
         for (String[] i : data)
-            Mockito.when(tanMock.tan(Double.parseDouble(i[0]), accuracy)).thenReturn(BigDecimal.valueOf(Double.parseDouble(i[1])));
+            Mockito.when(tanMock.tan(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
     }
 

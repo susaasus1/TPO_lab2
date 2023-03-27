@@ -10,9 +10,9 @@ public class Csc {
         this.sin = sin;
     }
 
-    public BigDecimal csc(double x, double precision) {
+    public double csc(double x, double precision) {
         if (x % Math.PI == 0)
-            return new BigDecimal(Double.NaN);
-        return BigDecimal.ONE.divide(sin.sin(x, precision), 20, RoundingMode.HALF_UP);
+            return Double.NaN;
+        return 1/ (sin.sin(x, precision));
     }
 }

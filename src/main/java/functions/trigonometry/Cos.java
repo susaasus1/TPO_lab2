@@ -10,13 +10,13 @@ public class Cos {
         this.sin = sin;
     }
 
-    public BigDecimal cos(double x, double precision) {
-        BigDecimal cos = (BigDecimal.ONE.subtract(sin.sin(x, precision).pow(2))).sqrt(MathContext.DECIMAL128);
+    public double cos(double x, double precision) {
+        double cos = Math.sqrt(1 - (sin.sin(x, precision) * sin.sin(x, precision)));
         x = Math.abs(x % (2 * Math.PI));
         if ((x > Math.PI / 2) && (x < 3 * Math.PI / 2)) {
-            cos = cos.multiply(BigDecimal.ONE.negate());
+            cos = cos * -1.0;
         }
-        if (cos.abs().doubleValue() > 1) return new BigDecimal(Double.NaN);
+        if (Math.abs(cos) > 1) return Double.NaN;
         return cos;
     }
 }

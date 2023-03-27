@@ -12,9 +12,9 @@ public class Cot {
         this.cos = cos;
     }
 
-    public BigDecimal cot(double x, double precision) {
+    public double cot(double x, double precision) {
         if (x % Math.PI == 0)
-            return new BigDecimal(Double.NaN);
-        return cos.cos(x, precision).divide(sin.sin(x, precision), 20, RoundingMode.HALF_UP);
+            return Double.NaN;
+        return cos.cos(x, precision)/(sin.sin(x, precision));
     }
 }

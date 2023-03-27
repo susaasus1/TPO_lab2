@@ -23,9 +23,7 @@ public class TrigonometryFunctionCalculator {
         this.sec = sec;
     }
 
-    public BigDecimal calculate(double x, double precision) {
-        return (((((((sec.sec(x, precision).multiply(sec.sec(x, precision))).pow(2)).multiply(sec.sec(x, precision))).subtract(sec.sec(x, precision).add(sec.sec(x, precision)))).subtract(csc.csc(x, precision)))
-                .divide((tan.tan(x, precision).add(sec.sec(x, precision))).multiply(cos.cos(x, precision)), 20, RoundingMode.HALF_UP))
-                .divide(((csc.csc(x, precision).subtract(tan.tan(x, precision).add(cot.cot(x, precision).subtract(sec.sec(x, precision))))).subtract((((cot.cot(x, precision).subtract(csc.csc(x, precision))).multiply(tan.tan(x, precision))).divide(cos.cos(x, precision), 20, RoundingMode.HALF_UP)).subtract(cot.cot(x, precision)))).multiply((cos.cos(x, precision).add(tan.tan(x, precision))).pow(2)), 20, RoundingMode.HALF_UP));
+    public double calculate(double x, double precision) {
+        return ((((((Math.pow(sec.sec(x, precision) * sec.sec(x, precision), 2)) * sec.sec(x, precision)) - (sec.sec(x, precision) + sec.sec(x, precision))) - csc.csc(x, precision)) / ((tan.tan(x, precision) + sec.sec(x, precision)) * cos.cos(x, precision))) / (((csc.csc(x, precision) - (tan.tan(x, precision) + (cot.cot(x, precision) - sec.sec(x, precision)))) - ((((cot.cot(x, precision) - csc.csc(x, precision)) * tan.tan(x, precision)) / cos.cos(x, precision)) - cot.cot(x, precision))) * (Math.pow(cos.cos(x, precision) + tan.tan(x, precision), 2))));
     }
 }

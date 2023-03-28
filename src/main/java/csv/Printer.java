@@ -9,4 +9,9 @@ public class Printer {
         PrintStream printStream = new PrintStream(new FileOutputStream(path, true));
         printStream.printf("%s, %s \n", number, answer);
     }
+
+    public void csvPrint(double number, double base, double answer, String path) throws FileNotFoundException {
+        PrintStream printStream = new PrintStream(new FileOutputStream(path, true));
+        printStream.printf("%s, %s, %s \n", number, base, answer);
+    }
 }

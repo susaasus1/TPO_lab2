@@ -16,12 +16,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
 public class FunctionTest {
     private static double accuracy;
+    private static final double delta = 1 / 1e3;
     private static Ln lnMock;
     private static LogX logXMock;
     private static Cos cosMock;
@@ -43,28 +45,37 @@ public class FunctionTest {
         sinMock = mock(Sin.class);
         tanMock = mock(Tan.class);
 
-        accuracy = 1 / 1e5;
+        accuracy = 1 / 1e10;
         csvPrinter = new Printer();
         String lnPath = "src/test/resources/LogarithmInput/lnInput.csv";
         CSVReader reader = new CSVReader(new FileReader(lnPath));
         List<String[]> data = reader.readAll();
-        for (String[] i : data) {
-            if (Double.parseDouble(i[0]) <= 0)
-                Mockito.when(lnMock.calculate(Double.parseDouble(i[0]), accuracy)).thenThrow(new ArithmeticException("Number должен быть больше 0!"));
-            else
-                Mockito.when(lnMock.calculate(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
+        for (String[] i : data)
+            Mockito.when(lnMock.calculate(Double.parseDouble(i[0]), accuracy)).thenReturn(Double.parseDouble(i[1]));
 
-        }
-
-        String logPath = "src/test/resources/LogarithmInput/LogInput.csv";
-        reader = new CSVReader(new FileReader(logPath));
+        String log2Path = "src/test/resources/LogarithmInput/Log2Input.csv";
+        reader = new CSVReader(new FileReader(log2Path));
         data = reader.readAll();
-        for (String[] i : data) {
-            if (Double.parseDouble(i[0]) <= 0)
-                Mockito.when(logXMock.calculate(Double.parseDouble(i[0]), Double.parseDouble(i[1]), accuracy)).thenThrow(new ArithmeticException("Number должен быть больше 0!"));
-            else
-                Mockito.when(logXMock.calculate(Double.parseDouble(i[0]), Double.parseDouble(i[1]), accuracy)).thenReturn(Double.parseDouble(i[2]));
-        }
+        for (String[] i : data)
+            Mockito.when(logXMock.calculate(Double.parseDouble(i[0]), 2, accuracy)).thenReturn(Double.parseDouble(i[1]));
+
+        String log3Path = "src/test/resources/LogarithmInput/Log3Input.csv";
+        reader = new CSVReader(new FileReader(log3Path));
+        data = reader.readAll();
+        for (String[] i : data)
+            Mockito.when(logXMock.calculate(Double.parseDouble(i[0]), 3, accuracy)).thenReturn(Double.parseDouble(i[1]));
+
+        String log5Path = "src/test/resources/LogarithmInput/Log5Input.csv";
+        reader = new CSVReader(new FileReader(log5Path));
+        data = reader.readAll();
+        for (String[] i : data)
+            Mockito.when(logXMock.calculate(Double.parseDouble(i[0]), 5, accuracy)).thenReturn(Double.parseDouble(i[1]));
+
+        String log10Path = "src/test/resources/LogarithmInput/Log10Input.csv";
+        reader = new CSVReader(new FileReader(log10Path));
+        data = reader.readAll();
+        for (String[] i : data)
+            Mockito.when(logXMock.calculate(Double.parseDouble(i[0]), 10, accuracy)).thenReturn(Double.parseDouble(i[1]));
 
         String cosPath = "src/test/resources/TrigonometryInput/cos.csv";
         reader = new CSVReader(new FileReader(cosPath));
@@ -113,7 +124,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(lnMock, logXMock), new TrigonometryFunctionCalculator(cotMock, cosMock, cscMock, tanMock, secMock));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
 
@@ -123,7 +134,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(lnMock, logXMock), new TrigonometryFunctionCalculator(cotMock, cosMock, new Csc(sinMock), tanMock, new Sec(cosMock)));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -132,7 +143,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(lnMock, logXMock), new TrigonometryFunctionCalculator(cotMock, new Cos(sinMock), new Csc(sinMock), tanMock, new Sec(cosMock)));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -141,7 +152,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(lnMock, logXMock), new TrigonometryFunctionCalculator(new Cot(sinMock, cosMock), new Cos(sinMock), new Csc(sinMock), new Tan(sinMock, cosMock), new Sec(cosMock)));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -156,7 +167,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(lnMock, logXMock), new TrigonometryFunctionCalculator(cot, cos, csc, tan, sec));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -165,7 +176,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(lnMock, new LogX(lnMock)), new TrigonometryFunctionCalculator(cotMock, cosMock, cscMock, tanMock, secMock));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -174,7 +185,7 @@ public class FunctionTest {
         Function systemFunc = new Function(new LogarithmFunction(new Ln(), new LogX(new Ln())), new TrigonometryFunctionCalculator(cotMock, cosMock, cscMock, tanMock, secMock));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
-        Assertions.assertEquals(expected, result, accuracy);
+        Assertions.assertEquals(expected, result, delta);
     }
 
 }

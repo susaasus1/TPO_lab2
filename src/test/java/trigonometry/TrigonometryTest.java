@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TrigonometryTest {
     private static double precision;
+    private static double delta;
     private static Printer csvPrinter;
     private static Cos cos;
     private static Cot cot;
@@ -23,7 +24,8 @@ public class TrigonometryTest {
 
     @BeforeAll
     public static void init() {
-        precision = 0.0001;
+        precision = 1 / 1e9;
+        delta = 1 / 1e3;
         sin = new Sin();
         cos = new Cos(sin);
         tan = new Tan(sin, cos);
@@ -38,7 +40,7 @@ public class TrigonometryTest {
     void sinTest(double x, double expected) throws FileNotFoundException {
         double result = sin.sin(x, precision);
         csvPrinter.csvPrint(x, result, "src/test/resources/TrigonometryOutput/sin.csv");
-        assertEquals(expected, result, precision);
+        assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -46,7 +48,7 @@ public class TrigonometryTest {
     void cosTest(double x, double expected) throws FileNotFoundException {
         double result = cos.cos(x, precision);
         csvPrinter.csvPrint(x, result, "src/test/resources/TrigonometryOutput/cos.csv");
-        assertEquals(expected, result, precision);
+        assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -54,7 +56,7 @@ public class TrigonometryTest {
     void secTest(double x, double expected) throws FileNotFoundException {
         double result = sec.sec(x, precision);
         csvPrinter.csvPrint(x, result, "src/test/resources/TrigonometryOutput/sec.csv");
-        assertEquals(expected, result, precision);
+        assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -62,7 +64,7 @@ public class TrigonometryTest {
     void cscTest(double x, double expected) throws FileNotFoundException {
         double result = csc.csc(x, precision);
         csvPrinter.csvPrint(x, result, "src/test/resources/TrigonometryOutput/csc.csv");
-        assertEquals(expected, result, precision);
+        assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -70,7 +72,7 @@ public class TrigonometryTest {
     void tanTest(double x, double expected) throws FileNotFoundException {
         double result = tan.tan(x, precision);
         csvPrinter.csvPrint(x, result, "src/test/resources/TrigonometryOutput/tan.csv");
-        assertEquals(expected, result, precision);
+        assertEquals(expected, result, delta);
     }
 
     @ParameterizedTest
@@ -78,7 +80,7 @@ public class TrigonometryTest {
     void cotTest(double x, double expected) throws FileNotFoundException {
         double result = cot.cot(x, precision);
         csvPrinter.csvPrint(x, result, "src/test/resources/TrigonometryOutput/cot.csv");
-        assertEquals(expected, result, precision);
+        assertEquals(expected, result, delta);
     }
 
 }

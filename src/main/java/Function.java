@@ -10,9 +10,6 @@ public class Function {
         this.trigonometryFunctionCalculator = trigonometryFunctionCalculator;
     }
 
-    public Function() {
-    }
-
     public double calculate(double number, double accuracy) {
         if (number > 0) {
             return logarithmFunction.calculate(number, accuracy);

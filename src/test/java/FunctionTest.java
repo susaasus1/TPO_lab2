@@ -182,7 +182,7 @@ public class FunctionTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/SystemInput/systemInput.csv")
     void testWithLn(double value, double expected) throws FileNotFoundException {
-        Function systemFunc = new Function(new LogarithmFunction(new Ln(), new LogX(new Ln())), new TrigonometryFunctionCalculator(cotMock, cosMock, cscMock, tanMock, secMock));
+        Function systemFunc = new Function(new LogarithmFunction(new Ln(), new LogX()), new TrigonometryFunctionCalculator(cotMock, cosMock, cscMock, tanMock, secMock));
         double result = systemFunc.calculate(value, accuracy);
         csvPrinter.csvPrint(value, result, "src/test/resources/SystemOutput/systemOutput.csv");
         Assertions.assertEquals(expected, result, delta);
